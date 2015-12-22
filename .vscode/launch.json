@@ -1,0 +1,26 @@
+// http://stackoverflow.com/questions/30009611/can-visual-studio-code-be-configured-to-launch-electron
+//https://code.visualstudio.com/Docs/editor/debugging
+{
+	"version": "0.2.0",
+	"configurations": [
+    { 
+      "name": "Launch", 
+      "type": "node", 
+      "request": "launch",
+      "program": "app/main.js", 
+      "runtimeExecutable": "node_modules/electron-prebuilt/dist/electron.exe",
+      // TCP/IP address. Default is "localhost". 
+      // Port to attach to.
+      //"port": 5858, 
+      "sourceMaps": true 
+     }, 
+     {
+           "name": "Attach",
+           "type": "node",
+           "request": "attach",
+           "preLaunchTask": "run",
+           "port": 5858,
+           "sourceMaps": false
+     } 
+   ] 
+}

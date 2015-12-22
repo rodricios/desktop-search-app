@@ -1,0 +1,22 @@
+{
+  "name": "nedb",
+  "description": "The Javascript Database for Node, nwjs, Electron and the browser",
+  "ignore": [
+    "benchmarks",
+    "lib",
+    "test",
+    "test_lac"
+  ],
+  "homepage": "https://github.com/louischatriot/nedb",
+  "version": "1.4.2",
+  "_release": "1.4.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.4.2",
+    "commit": "3ef591774cc9f5ad5a63ed713a19c3371c1efe93"
+  },
+  "_source": "git://github.com/louischatriot/nedb.git",
+  "_target": "~1.4.2",
+  "_originalSource": "nedb",
+  "_direct": true
+}

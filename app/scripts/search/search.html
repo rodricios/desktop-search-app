@@ -1,0 +1,38 @@
+<div style="width:100%" layout="row">
+    <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-sm')">
+
+        <!--<md-toolbar layout="row" class="md-whiteframe-z1">
+            <h1>Folders</h1>
+        </md-toolbar>
+        <md-input-container style="margin-bottom:0">
+            <label>Folder Path</label>
+            <input required name="customerName" ng-model="_ctrl.filterText" ng-change="_ctrl.filter()">
+        </md-input-container>
+        <md-list>
+            <md-list-item ng-repeat="it in _ctrl.folders">
+                <md-button>
+                    {{it.name}}
+                </md-button>
+            </md-list-item>
+        </md-list>-->
+    </md-sidenav>
+
+    <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
+        <md-toolbar layout="row" class="md-whiteframe-z1">
+            <h1>Folders</h1>
+        </md-toolbar>
+        <md-input-container style="margin-bottom:0">
+            <label>Folder Path</label>
+            <input required name="customerName" ng-model="_ctrl.filterText" ng-change="_ctrl.filter()">
+        </md-input-container>
+        <md-list>
+            <md-list-item ng-repeat="it in _ctrl.folders">
+                <md-button>
+                    {{it.name}}
+                </md-button>
+            </md-list-item>
+        </md-list>
+    </div>
+</div>

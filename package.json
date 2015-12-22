@@ -1,0 +1,30 @@
+{
+  "name": "sift",
+  "version": "0.0.0",
+  "description": "google for your personal stuff",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/atom/electron-quick-start"
+  },
+  "author": "rodricios",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atom/electron-quick-start/issues"
+  },
+  "homepage": "https://github.com/atom/electron-quick-start",
+  "devDependencies": {
+    "asar": "^0.8.3",
+    "fs-jetpack": "^0.7.1",
+    "q": "^1.2.0",
+    "rcedit": "^0.3.0"
+  },
+  "dependencies": {
+    "gulp-minify-css": "^1.2.2",
+    "gulp-uglify": "^1.5.1",
+    "gulp-usemin": "^0.3.16"
+  }
+}
