@@ -20,6 +20,11 @@ app.on('window-all-closed', function() {
   }
 });
 
+app.on('open-file', function() {
+  event.preventDefault();
+  console.log();
+});
+
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
@@ -40,3 +45,4 @@ app.on('ready', function() {
     mainWindow = null;
   });
 });
+
