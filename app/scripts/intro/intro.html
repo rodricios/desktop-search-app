@@ -6,10 +6,10 @@ custom-on-drop="dropFolders"
     <md-content>
         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
             <md-button class="md-raised" ng-click="openFolder()" flex>Open</md-button>
-
+            <md-button class="md-raised" ng-click="savePaths()" flex>Save</md-button>
             <md-list>
                 <md-subheader class="md-no-sticky"></md-subheader>
-                <md-list-item class="md-3-line" ng-repeat="folder in folders | unique">
+                <md-list-item class="md-3-line" ng-repeat="folder in folders | unique: 'path' | isFolder">
                     {{folder.path}}
                 </md-list-item>
             </md-list>

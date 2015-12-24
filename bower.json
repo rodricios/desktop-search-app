@@ -1,0 +1,21 @@
+{
+  "name": "siftsearch",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rodricios/desktop-search-app",
+  "authors": [
+    "im-rodrigo <rodrigopala91@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-material": "~1.0.1",
+    "angular-filter": "~0.5.8",
+    "angular-route": "~1.4.8"
+  }
+}

@@ -14,8 +14,8 @@ window.sift = sift;
     angular.module('app', [
         'ngRoute',
         'ngMaterial',
-        'ngAnimate'
-        //'ui.filters'
+        'ngAnimate',
+        'angular.filter'
     ])
     .config(['$routeProvider', function ($routeProvider) {
             $routeProvider

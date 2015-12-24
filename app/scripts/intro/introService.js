@@ -1,18 +1,16 @@
 (function () {
     'use strict';
     
-    var fs = require('fs');
-    
     angular.module('app')
-        .service('searchService', ['$q', '$scope', SearchService]);
+        .service('introService', ['$q', IntroService]);
     
-    function SearchService($q, $scope) {
+    function IntroService($q) {
         return {
             savePaths: savePaths
         };
         
         function savePaths(paths) {
-            console.log(paths);
+            console.log("introService.savePaths",paths);
         }
     }
 })();

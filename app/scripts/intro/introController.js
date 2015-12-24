@@ -1,22 +1,24 @@
 (function () {
+    
     var remote = require('remote'); 
     var dialog = remote.require('dialog'); 
+    var fs = require('fs');
     
     'use strict';
     angular.module('app')
-        .controller('introController', ['$q', '$scope', IntroController])
+        .controller('introController', ['introService', '$q', '$scope', IntroController])
         .directive('customOnDrop', CustomOnDrop)
         .directive('customOnChange', CustomOnChange)
-        .filter('unique', UniqueFilter);
+        .filter('isFolder', IsFolder);
         
-    function IntroController($q, $scope) {
+    function IntroController(introService, $q, $scope) {
 
         $scope.default = '/Documents';
         $scope.folders = []; 
         
-        $scope.uploadFile = function(event){
-            var files = event.target.files;
-            console.log(files[0].path);
+        $scope.savePaths = function(){
+            //console.log($scope.folders);
+            introService.savePaths($scope.folders);
         };
         
         $scope.addFolder = function(folder) {
@@ -40,7 +42,6 @@
             event.preventDefault();
             event.stopPropagation();
             var files = event.originalEvent.dataTransfer.files;
-            //var folders = [];
             
             // iterate in the files dropped
             for (var i = 0, f; f = files[i]; i++) { 
@@ -54,6 +55,7 @@
             
             console.log($scope.folders);
         };
+        
     }
     
     function CustomOnDrop() {
@@ -87,13 +89,34 @@
                 }
         };
     } 
-    // http://jsfiddle.net/MeBeiM/rnjpbhhg///http://stackoverflow.com/questions/25016442/how-to-distinguish-if-a-file-or-folder-is-being-dragged-prior-to-it-being-droppe
     
-    
-    function UniqueFilter() {
-        return function (arr, field) {
-            return _.uniq(arr, function(a) { return a[field]; });
+    function IsFolder() {
+        return function(folders) {
+            var filtered = [];
+            angular.forEach(folders, function(folder) {
+                var stats = fs.statSync(folder.path);
+                if (stats.isDirectory()) {
+                    filtered.push(folder);
+                }
+            });
+            return filtered;
         };
     }
-
+    
+    // adding drag-n-drop
+    // http://jsfiddle.net/MeBeiM/rnjpbhhg///http://stackoverflow.com/questions/25016442/how-to-distinguish-if-a-file-or-folder-is-being-dragged-prior-to-it-being-droppe
+    
+    // filtering dupes
+    // https://github.com/a8m/angular-filter
+    // http://stackoverflow.com/questions/15914658/how-to-make-ng-repeat-filter-out-duplicate-results
+    
+    // custom filters
+    // http://stackoverflow.com/questions/15196161/angularjs-how-to-structure-a-custom-filter-with-ng-repeat-to-return-items-cond
+    
+    // getting filenames in folder
+    // http://stackoverflow.com/questions/2727167/getting-all-filenames-in-a-directory-with-node-js
+    
+    // fs stats - getting file and folder info
+    // https://nodejs.org/docs/v0.3.1/api/fs.html#fs.Stats
+    
 })();
