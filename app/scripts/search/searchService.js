@@ -8,40 +8,60 @@
     
     function SearchService($q) {
         return {
-            getByQuery: getByQuery,
-            getFilesRecursive: getFilesRecursive
+            getDocIdsByQuery: getDocIdsByQuery,
+            getTextsByTextIds: getTextsByTextIds,
+            getPathsByPathIds: getPathsByPathIds,
+            getPaths: getPaths
         };
         
-        function getFilesRecursive (folder) {
-            var fileContents = fs.readdirSync(folder),
-                fileTree = [],
-                stats;
-
-            fileContents.forEach(function (fileName) {
-                stats = fs.lstatSync(folder + '/' + fileName);
-
-                if (stats.isDirectory()) {
-                    fileTree.push({
-                        name: fileName,
-                        children: getFilesRecursive(folder + '/' + fileName)
-                    });
-                } else {
-                    fileTree.push({
-                        name: fileName
-                    });
-                }
-            });
-
-            return fileTree;
-        };
-        
-        function getByQuery(query) {
+        function getPaths() {
             var deferred = $q.defer();
-            connection.query(query, function (err, rows) {
+            
+            // Find all documents in the collection
+            sift.pathsDB.find({}, function (err, docs) {
                 if (err) deferred.reject(err);
-                deferred.resolve(rows);
+                deferred.resolve(docs);
             });
+            
             return deferred.promise;
+        }
+        
+        function getTextsByTextIds(ids) {
+            var deferred = $q.defer();
+            
+            sift.textsDB.find({ 
+                //$where: () => (ids.indexOf(this._id) > -1)
+                $where: function() {
+                    return ids.indexOf(this._id) > -1
+                }
+            }, function (err, docs) {
+                if (err) deferred.reject(err);
+                
+                deferred.resolve(docs);
+            });
+            
+            return deferred.promise;
+        }
+        
+        
+        function getPathsByPathIds(ids) {
+            var deferred = $q.defer();
+            
+            sift.pathsDB.find({ 
+                $where: function() {
+                    return ids.indexOf(this._id) > -1
+                }
+            }, function (err, docs) {
+                if (err) deferred.reject(err);
+                
+                deferred.resolve(docs);
+            });
+            
+            return deferred.promise;
+        }
+        
+        function getDocIdsByQuery(query) {
+            return sift.searchIndex.search(query);
         }
     }
 })();

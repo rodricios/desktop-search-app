@@ -18,6 +18,7 @@
   "homepage": "https://github.com/atom/electron-quick-start",
   "devDependencies": {
     "asar": "^0.8.3",
+    "electron-rebuild": "^1.0.2",
     "fs-jetpack": "^0.7.1",
     "q": "^1.2.0",
     "rcedit": "^0.3.0"

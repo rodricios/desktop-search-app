@@ -1,19 +1,36 @@
-<div 
-style="width:100%; height:100%;"
-ng-controller="introController"
-custom-on-drop="dropFolders"
- ng-cloak>
+<style>
+    .green {
+        background: #b9f6ca;
+    }
+    
+    md-grid-tile {
+        transition: all 400ms ease-out 50ms;
+    }
+    
+    md-grid-list {
+        margin: 8px;
+    }
+</style>
+<div style="width:100%; height:100%;" ng-controller="introController" custom-on-drop="dropFolders" ng-cloak>
     <md-content>
         <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
             <md-button class="md-raised" ng-click="openFolder()" flex>Open</md-button>
             <md-button class="md-raised" ng-click="savePaths()" flex>Save</md-button>
-            <md-list>
+            <!--<md-list>
                 <md-subheader class="md-no-sticky"></md-subheader>
-                <md-list-item class="md-3-line" ng-repeat="folder in folders | unique: 'path' | isFolder">
-                    {{folder.path}}
+                <md-list-item class="md-2-line" ng-repeat="folder in folders | unique: 'path' | isFolder">
+                    <h3>{{folder.path}}</h3>
                 </md-list-item>
-            </md-list>
+            </md-list>-->
             <!--<button custom-on-change="uploadFile">Open</button>-->
         </section>
     </md-content>
+    <md-grid-list md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6" md-row-height-gt-md="1:1" md-row-height="2:2" md-gutter="12px"
+    md-gutter-gt-sm="8px" ng-repeat="folder in folders | unique: 'path' | isFolder">
+        <md-grid-tile class="green">
+            <md-grid-tile-footer>
+                <h3>{{folder.path}}</h3>
+            </md-grid-tile-footer>
+        </md-grid-tile>
+    </md-grid-list>
 </div>

@@ -1,17 +1,15 @@
-<div style="width:100%" layout="row">
-    <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
-                md-component-id="left"
-                md-is-locked-open="$mdMedia('gt-sm')">
+<div style="width:100%" ng-controller="searchController" layout="row">
+    <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
 
         <!--<md-toolbar layout="row" class="md-whiteframe-z1">
             <h1>Folders</h1>
         </md-toolbar>
         <md-input-container style="margin-bottom:0">
             <label>Folder Path</label>
-            <input required name="customerName" ng-model="_ctrl.filterText" ng-change="_ctrl.filter()">
+            <input required name="customerName" ng-model="filterText" ng-change="filter()">
         </md-input-container>
         <md-list>
-            <md-list-item ng-repeat="it in _ctrl.folders">
+            <md-list-item ng-repeat="it in folders">
                 <md-button>
                     {{it.name}}
                 </md-button>
@@ -21,17 +19,18 @@
 
     <div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
         <md-toolbar layout="row" class="md-whiteframe-z1">
-            <h1>Folders</h1>
+            <h1>Search</h1>
         </md-toolbar>
         <md-input-container style="margin-bottom:0">
-            <label>Folder Path</label>
-            <input required name="customerName" ng-model="_ctrl.filterText" ng-change="_ctrl.filter()">
+            <label><i>In the beginning ...</i></label>
+            <input required name="customerName" ng-model="query" ng-change="search(query)">
         </md-input-container>
         <md-list>
-            <md-list-item ng-repeat="it in _ctrl.folders">
-                <md-button>
-                    {{it.name}}
-                </md-button>
+            <md-list-item class="md-2-line" ng-repeat="result in results">
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ result.path }}</h3>
+                    <p>{{ result.textContent }}</p>
+                </div>
             </md-list-item>
         </md-list>
     </div>
